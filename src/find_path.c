@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   find_path.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/11 14:12:36 by taretiuk          #+#    #+#             */
-/*   Updated: 2024/05/11 19:40:25 by taretiuk         ###   ########.fr       */
+/*   Created: 2024/05/12 13:02:46 by taretiuk          #+#    #+#             */
+/*   Updated: 2024/05/12 13:03:28 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pipex.h"
+#include "../include/pipex.h"
 
 char	*return_path(char **paths, char **cmd)
 {
@@ -61,46 +61,4 @@ char	*find_path(char **cmd, char **envp)
 	path = return_path(paths, cmd);
 	free_2d_array(paths);
 	return (path);
-}
-
-void	execute(char *argv, char **envp)
-{
-	char	**cmd;
-	char	*path;
-
-	cmd = ft_split(argv, ' ');
-	check_cmd(cmd);
-	path = find_path(cmd, envp);
-	check_path(cmd, path);
-	if (execve(path, cmd, envp) == -1)
-		error_execve(cmd, path);
-	free_2d_array(cmd);
-	free(path);
-}
-
-int	get_next_line(char **line)
-{
-	char	*buffer;
-	int		i;
-	int		r;
-	char	c;
-
-	i = 0;
-	r = 0;
-	buffer = (char *)malloc(10000);
-	if (!buffer)
-		return (-1);
-	r = read(0, &c, 1);
-	while (r && c != '\n' && c != '\0')
-	{
-		if (c != '\n' && c != '\0')
-			buffer[i] = c;
-		i++;
-		r = read(0, &c, 1);
-	}
-	buffer[i] = '\n';
-	buffer[++i] = '\0';
-	*line = buffer;
-	free(buffer);
-	return (r);
 }

@@ -6,7 +6,7 @@
 /*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 10:45:58 by taretiuk          #+#    #+#             */
-/*   Updated: 2024/05/10 17:47:55 by taretiuk         ###   ########.fr       */
+/*   Updated: 2024/05/12 18:23:30 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,32 +99,3 @@ char	**ft_split(char const *s, char c)
 	res[i] = 0;
 	return (res);
 }
-/*
-#include <stdio.h>
-int	main(void)
-{
-	char **result = ft_split("0 1 2 3 4", ' ');
-	int i = 0;
-	int n = 0;
-	
-	if (result == NULL)
-		printf("Memory allocation failed");
-	else
-	{
-		while (result[n] != NULL)
-		{
-			printf("%s", result[n]);
-			n++;
-		}
-	}
-	i = 0;
-	while (i < n)
-	{
-		free(result[i]);
-		i++;
-	}
-	free(result);
-	result = NULL;
-	return (0);
-}
-*/
